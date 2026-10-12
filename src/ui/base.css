@@ -1,0 +1,120 @@
+:root {
+  --paper: #f6f1e7;
+  --paper-2: #efe8da;
+  --card: #fffdf8;
+  --ink: #16130f;
+  --ink-2: #4a443b;
+  --ink-3: #8a8174;
+  --line: #e2d9c8;
+  --accent: #ff5a36;
+  --accent-ink: #ffffff;
+  --accent-soft: #ffe3da;
+  --focus: #ff5a36;
+  --radius: 14px;
+  --shadow: 0 1px 2px rgba(22, 19, 15, .06), 0 8px 24px rgba(22, 19, 15, .06);
+  --ui: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  --display: "Instrument Serif", Georgia, serif;
+  color-scheme: light;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --paper: #14120f;
+    --paper-2: #1c1915;
+    --card: #1f1c18;
+    --ink: #f3ece0;
+    --ink-2: #c9c0b1;
+    --ink-3: #8d8579;
+    --line: #322d27;
+    --accent: #ff6b4a;
+    --accent-ink: #160b07;
+    --accent-soft: #3a1f17;
+    --shadow: 0 1px 2px rgba(0, 0, 0, .3), 0 8px 24px rgba(0, 0, 0, .25);
+    color-scheme: dark;
+  }
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  background: var(--paper);
+  color: var(--ink);
+  font: 14px/1.45 var(--ui);
+  -webkit-font-smoothing: antialiased;
+}
+
+button, input, select, textarea { font: inherit; color: inherit; }
+
+:focus-visible { outline: 2px solid var(--focus); outline-offset: 2px; }
+
+.wordmark {
+  margin: 0;
+  font: 400 26px/1 var(--display);
+  letter-spacing: -.01em;
+}
+.wordmark em { color: var(--accent); }
+
+.heart-btn {
+  flex: none;
+  display: inline-grid;
+  place-items: center;
+  width: 36px;
+  height: 36px;
+  border: 1px solid var(--line);
+  border-radius: 50%;
+  background: var(--card);
+  color: var(--ink-2);
+  cursor: pointer;
+  transition: color .15s, border-color .15s, transform .15s, background .15s;
+}
+.heart-btn svg { width: 18px; height: 18px; fill: transparent; stroke: currentColor; stroke-width: 2; transition: fill .15s; }
+.heart-btn:hover { color: var(--accent); border-color: var(--accent); transform: scale(1.05); }
+.heart-btn.on { color: var(--accent); border-color: var(--accent-soft); background: var(--accent-soft); }
+.heart-btn.on svg { fill: currentColor; }
+.heart-btn.busy { opacity: .5; pointer-events: none; }
+
+[hidden] { display: none !important; }
+
+/* Free-source tags (shared by popup and dashboard) */
+.tags { display: flex; flex-wrap: wrap; gap: 4px; min-width: 0; }
+.tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  height: 20px;
+  padding: 0 8px;
+  border-radius: 999px;
+  font: 600 10.5px/1 var(--ui);
+  letter-spacing: .02em;
+  white-space: nowrap;
+  text-decoration: none;
+  background: var(--paper-2);
+  color: var(--ink-2);
+}
+a.tag:hover { filter: brightness(.96); text-decoration: underline; text-underline-offset: 2px; }
+.tag::before { content: ""; width: 6px; height: 6px; border-radius: 50%; background: currentColor; opacity: .85; }
+.tag[data-provider="google"] { background: #e3edff; color: #1d4fbf; }
+.tag[data-provider="fontshare"] { background: #fff0c7; color: #7a5300; }
+.tag[data-provider="fontsquirrel"] { background: #dff5e4; color: #1d6b34; }
+.tag[data-provider="fontsource"] { background: #eee6ff; color: #5b34b8; }
+.tag[data-provider="adobe"] { background: #ffe1e1; color: #b3261e; }
+.tag[data-provider="top"] { background: var(--ink); color: var(--paper); }
+.tag[data-provider="top"]::before { display: none; }
+.tag[data-provider="none"] { background: transparent; color: var(--ink-3); box-shadow: inset 0 0 0 1px var(--line); }
+.tag[data-provider="none"]::before { display: none; }
+.tag.checking {
+  width: 74px;
+  background: linear-gradient(90deg, var(--paper-2) 0%, var(--line) 50%, var(--paper-2) 100%) 0 0 / 200% 100%;
+  animation: shimmer 1.2s linear infinite;
+}
+.tag.checking::before { display: none; }
+@keyframes shimmer { to { background-position: -200% 0; } }
+
+@media (prefers-color-scheme: dark) {
+  .tag[data-provider="google"] { background: #1b2a46; color: #a9c4ff; }
+  .tag[data-provider="fontshare"] { background: #3a2f12; color: #f3d27a; }
+  .tag[data-provider="fontsquirrel"] { background: #15331e; color: #8fdca4; }
+  .tag[data-provider="fontsource"] { background: #2a1f47; color: #c9b5ff; }
+  .tag[data-provider="adobe"] { background: #431b1b; color: #ffb4ab; }
+}

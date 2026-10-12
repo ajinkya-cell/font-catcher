@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Font Catcher</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&display=swap">
+  <link rel="stylesheet" href="../ui/base.css">
+  <link rel="stylesheet" href="popup.css">
+</head>
+<body>
+  <header class="top">
+    <h1 class="wordmark">Font <em>Catcher</em></h1>
+    <button class="link-btn" id="open-dashboard" type="button">
+      <span id="saved-count">0</span> saved
+      <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M5 11 11 5M6 5h5v5"/></svg>
+    </button>
+  </header>
+
+  <main id="main">
+    <p class="status" id="status">Looking for fonts…</p>
+  </main>
+
+  <footer class="tip">
+    Tip: select text on any page, right-click, and choose <b>Catch this font</b>.
+  </footer>
+
+  <template id="hero-tpl">
+    <section class="hero">
+      <div class="hero-head">
+        <p class="eyebrow"></p>
+        <div class="tags"></div>
+      </div>
+      <p class="hero-name"></p>
+      <p class="hero-sample"></p>
+      <button class="save-btn" type="button"></button>
+    </section>
+  </template>
+
+  <template id="row-tpl">
+    <li class="row">
+      <div class="row-body">
+        <div class="row-head">
+          <p class="row-name"></p>
+          <div class="tags"></div>
+        </div>
+        <p class="row-preview loading"></p>
+        <p class="row-meta"></p>
+      </div>
+      <button class="heart-btn" type="button">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 20.5s-7.5-4.6-9.6-9.2C.9 8 2.9 4 6.6 4c2.2 0 3.7 1.2 4.6 2.6h1.6C13.7 5.2 15.2 4 17.4 4c3.7 0 5.7 4 4.2 7.3-2.1 4.6-9.6 9.2-9.6 9.2z"/></svg>
+      </button>
+    </li>
+  </template>
+
+  <script type="module" src="popup.js"></script>
+</body>
+</html>

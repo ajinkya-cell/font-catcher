@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Font Catcher</title>
+  <link rel="icon" href="../../icons/icon32.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&display=swap">
+  <link rel="stylesheet" href="../ui/base.css">
+  <link rel="stylesheet" href="dashboard.css">
+</head>
+<body>
+  <header class="masthead">
+    <div>
+      <h1 class="wordmark">Font <em>Catcher</em></h1>
+      <p class="tally" id="tally"></p>
+    </div>
+    <div class="masthead-actions">
+      <button class="ghost-btn" id="export-btn" type="button">Export</button>
+      <label class="ghost-btn" for="import-input">Import</label>
+      <input id="import-input" type="file" accept="application/json,.json" hidden>
+    </div>
+  </header>
+
+  <div class="toolbar" role="search">
+    <div class="toolbar-row">
+      <label class="field field-preview">
+        <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M3 4V3h10v1M8 3v10M6 13h4"/></svg>
+        <span class="sr-only">Preview text</span>
+        <input id="preview-input" type="text" placeholder="Type something to preview every font…" autocomplete="off">
+      </label>
+      <div class="size-control">
+        <span class="size-a size-a-sm" aria-hidden="true">A</span>
+        <div class="slider-wrap">
+          <input id="size-input" class="slider" type="range" min="16" max="120" step="2" value="44" aria-label="Preview size">
+          <output class="slider-bubble" id="size-output" for="size-input">44px</output>
+        </div>
+        <span class="size-a size-a-lg" aria-hidden="true">A</span>
+      </div>
+    </div>
+    <div class="toolbar-row">
+      <div class="dd" id="filter-dd"></div>
+      <label class="field field-search">
+        <span class="sr-only">Search fonts</span>
+        <svg viewBox="0 0 16 16" aria-hidden="true"><circle cx="7" cy="7" r="4.5"/><path d="m10.5 10.5 3 3"/></svg>
+        <input id="search-input" type="search" placeholder="Search names, notes, sites" autocomplete="off">
+      </label>
+      <div class="dd dd-right" id="sort-dd"></div>
+    </div>
+  </div>
+
+  <main>
+    <div class="grid" id="grid"></div>
+    <section class="empty" id="empty" hidden>
+      <p class="empty-mark">Aa</p>
+      <h2>No fonts caught yet</h2>
+      <p>Heart a font on <a href="https://fonts.google.com" target="_blank" rel="noopener">Google Fonts</a> or
+        <a href="https://www.fontshare.com" target="_blank" rel="noopener">Fontshare</a>, open Font Catcher on any website,
+        or select text and right-click <b>Catch this font</b>.</p>
+    </section>
+    <p class="no-results" id="no-results" hidden>No fonts match.</p>
+  </main>
+
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+  <template id="card-tpl">
+    <article class="card">
+      <header class="card-head">
+        <h2 class="card-name"></h2>
+        <div class="tags"></div>
+      </header>
+      <p class="preview" spellcheck="false"></p>
+      <p class="preview-note" hidden>Not captured — preview shows your system's copy if installed.</p>
+      <div class="notes" hidden>
+        <textarea rows="2" placeholder="Notes — where you'd use it, pairings, license…"></textarea>
+      </div>
+      <footer class="card-foot">
+        <p class="provenance"></p>
+        <div class="card-actions">
+          <button class="icon-btn act-notes" type="button" title="Notes" aria-label="Notes">
+            <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M3 3.5h10M3 6.5h10M3 9.5h6"/><path d="M3 12.5h4"/></svg>
+          </button>
+          <button class="icon-btn act-copy" type="button" title="Copy CSS" aria-label="Copy CSS">
+            <svg viewBox="0 0 16 16" aria-hidden="true"><path d="m5.5 4.5-3 3.5 3 3.5M10.5 4.5l3 3.5-3 3.5"/></svg>
+          </button>
+          <a class="icon-btn act-visit" target="_blank" rel="noopener" title="Open source page" aria-label="Open source page">
+            <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M6.5 3.5h-3v9h9v-3M9 3.5h3.5V7M12.5 3.5 7 9"/></svg>
+          </a>
+          <button class="icon-btn act-remove" type="button" title="Remove" aria-label="Remove">
+            <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M3 4.5h10M6.5 4.5V3h3v1.5M4.5 4.5l.5 8.5h6l.5-8.5"/></svg>
+          </button>
+        </div>
+      </footer>
+    </article>
+  </template>
+
+  <script type="module" src="dashboard.js"></script>
+</body>
+</html>

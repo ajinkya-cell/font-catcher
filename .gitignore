@@ -1,0 +1,11 @@
+# Packaged builds for the Chrome Web Store
+*.zip
+*.crx
+*.pem
+
+# OS / editor clutter
+.DS_Store
+Thumbs.db
+desktop.ini
+.vscode/
+.idea/
